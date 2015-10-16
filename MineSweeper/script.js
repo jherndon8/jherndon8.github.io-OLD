@@ -79,16 +79,17 @@ $(document).ready(function() {
             console.log(mine + ' Mine at: ' + row + ', ' + col);
         }
     }
-    $('.cell').dblclick( function() {
-        if (!($(this).hasClass('clicked'))){
-            var row = getRow($(this));
-            var col = getCol($(this));
-            cellClick(row, col);
-        }
-    });
-    $('.cell').click( function() {
-        if (!$(this).hasClass('clicked')) {
-        $(this).toggleClass('mark');
+    $('.cell').click( function(e) {
+        if (!e.shiftKey) {
+            if (!($(this).hasClass('clicked'))){
+                var row = getRow($(this));
+                var col = getCol($(this));
+                cellClick(row, col);
+            }
+        } else {
+            if (!$(this).hasClass('clicked')) {
+                $(this).toggleClass('mark');
+            }
         }
     });
     cellClick = function(row, col) {
